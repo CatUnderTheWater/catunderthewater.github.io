@@ -1,0 +1,76 @@
+body {
+    background: url(zdjecia/background.jpg) no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+}
+#myButton {
+    position: fixed; /* Ustawienie przycisku na stałe na ekranie */
+    background-color: red;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+.container {
+    text-align: center;
+}
+
+
+.kwiat {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+#wal {
+    color: red;
+    font-family: fantasy, cursive;
+    font-size: 70px;
+    margin: 20px 0;
+}
+
+p {
+    color: red;
+    font-family: fantasy, cursive;
+    font-size: 40px;
+    margin: 20px 0;
+}
+
+.buttons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}
+#takButton {
+    background-color: red;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+#nieButton {
+    background-color: red;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+a {
+    color: white;
+    text-decoration: none;
+}
