@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Position Button</title>
+    <style>
+body {
+    background-color: black;
+}
+.hidden {
+    display: none;
+    color: white;
+}
+.start {
+    font-size: 100px;
+    color: white;
+    margin: auto;
+    width: 50%;
+    text-align: center;
+    border: none;
+    text-decoration: none;
+    background-color: black;
+}
+.text {
+    font-size: 60px;
+    color: white;
+    margin: auto;
+    width: 50%;
+    text-align: center;
+}
+#clickButton {
+    z-index: -1;
+    position: fixed;
+    display: block;
+    color: red;
+    background-color: red;
+    padding:  20px 20px;
+    text-decoration: none;
+    text-align: center;
+    border: none;
+}
+    </style>
+</head>
+<body>
+<div class="text">
+  <p>Welcome to simple clicking game!</p>
+    <button id="startofthegame" class="start">Start!</button>
+</div>
+<div class="hidden">
+    <button id="clickButton" onclick="resetTimer()">O</button>
+    <p style="color: white;">Counter: <span id="counter" style="color: white;">0</span></p>
+    <p style="color: white;">Time left: <span id="timer" style="color: white;">5</span> seconds</p>
+</div>
+<script>
+    // Global variables
+const clickButton = document.getElementById('clickButton');
+const counterElement = document.getElementById('counter');
+
+// Counter
+let counter = 0;
+clickButton.addEventListener('click', () => {
+  counter++;
+  counterElement.textContent = counter;
+  moveButtonRandomly();
+});
+
+// Timer
+let timeLeft = 5;
+let timerElement = document.getElementById('timer');
+let timer;
+
+function countdown() {
+    if (timeLeft > 0) {
+        timeLeft--;
+        timerElement.textContent = timeLeft;
+    } else {
+        clearInterval(timer);
+        alert('Game Over! You lose!');
+    }
+};
+
+function startTimer() {
+    timer = setInterval(countdown, 1000);
+}
+
+function resetTimer() {
+    clearInterval(timer);
+    timeLeft = 5;
+    timerElement.textContent = timeLeft;
+}
+
+document.getElementById('startofthegame').addEventListener('click', startTimer);
+document.getElementById('clickButton').addEventListener('click', startTimer);
+
+
+// Random button position
+function moveButtonRandomly() {
+  const randomX = Math.random() * (window.innerWidth - clickButton.offsetWidth);
+  const randomY = Math.random() * (window.innerHeight - clickButton.offsetHeight);
+  clickButton.style.left = randomX + 'px';
+  clickButton.style.top = randomY + 'px';
+}
+
+// Start of the actual game after clicking "START!" button
+document.getElementById("startofthegame").addEventListener("click", moveButtonRandomly);
+const start = document.getElementById("startofthegame");
+start.addEventListener("click", hidden)
+function hidden() {
+ var button = document.querySelector(".hidden");
+button.classList.remove("hidden")
+var button2 = document.querySelector(".text")
+button2.setAttribute("style", "display: none;")
+}
+</script>
+</body>
+</html>
