@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="urodziny.css" type="txt">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Urodziny Nicoli</title>
+    <style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #474e5d;
+  font-family: Helvetica, sans-serif;
+}
+
+/* The actual timeline (the vertical ruler) */
+.timeline {
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* The actual timeline (the vertical ruler) */
+.timeline::after {
+  content: '';
+  position: absolute;
+  width: 6px;
+  background-color: white;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  margin-left: -3px;
+}
+
+/* Container around content */
+.container {
+  padding: 10px 40px;
+  position: relative;
+  background-color: inherit;
+  width: 80%;
+}
+
+/* The circles on the timeline */
+.container::after {
+  content: '';
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  right: -17px;
+  background-color: white;
+  border: 4px solid red;
+  top: 15px;
+  border-radius: 50%;
+  z-index: 1;
+}
+
+/* Place the container to the left */
+.left {
+  left: -30%;
+}
+
+/* Place the container to the right */
+.right {
+  left: 50%;
+}
+
+/* Add arrows to the left container (pointing right) */
+.left::before {
+  content: " ";
+  height: 0;
+  position: absolute;
+  top: 22px;
+  width: 0;
+  z-index: 1;
+  right: 30px;
+  border: medium solid white;
+  border-width: 10px 0 10px 10px;
+  border-color: transparent transparent transparent white;
+}
+
+/* Add arrows to the right container (pointing left) */
+.right::before {
+  content: " ";
+  height: 0;
+  position: absolute;
+  top: 22px;
+  width: 0;
+  z-index: 1;
+  left: 30px;
+  border: medium solid white;
+  border-width: 10px 10px 10px 0;
+  border-color: transparent white transparent transparent;
+}
+
+/* Fix the circle for containers on the right side */
+.right::after {
+  left: -16px;
+}
+
+/* The actual content */
+.content {
+  padding: 20px 30px;
+  background-color: white;
+  position: relative;
+  border-radius: 6px;
+}
+
+/* Media queries - Responsive timeline on screens less than 600px wide */
+@media screen and (max-width: 600px) {
+  /* Place the timelime to the left */
+  .timeline::after {
+  left: 31px;
+  }
+  
+  /* Full-width containers */
+  .container {
+  width: 100%;
+  padding-left: 70px;
+  padding-right: 25px;
+  }
+  
+  /* Make sure that all arrows are pointing leftwards */
+  .container::before {
+  left: 60px;
+  border: medium solid white;
+  border-width: 10px 10px 10px 0;
+  border-color: transparent white transparent transparent;
+  }
+
+  /* Make sure all circles are at the same spot */
+  .left::after, .right::after {
+  left: 15px;
+  }
+  
+  /* Make all right containers behave like the left ones */
+  .right {
+  left: 0%;
+  }
+}
+#zdjecia {
+  border: 1px white solid;
+  padding: 5px;
+  border-radius: 30px;
+  display: flex;
+  flex-direction: row;
+}
+</style>
+</head>
+<body>
+    
+<div class="timeline">
+    <div class="container left">
+      <div class="content">
+        <h2>10 października 2023</h2>
+        <p>Tego o to dnia, zostaliśmy parą. To ty namówiłaś mnie kilka dni wcześniej na związek, ja tylko ładnie się zapytałem. Nie wiedziałem, że tamtego dnia zacznie się <strong>NAJLEPSZY</strong> okres w moim życiu, cieszę z niego każdego dnia, choć szkoda, że nie możemy się tak często spotykać.</p>
+        <div id="zdjecia"> 
+          <img  id="zdjecia" style="width: 100%;" src="photos/zwiazek.png" alt="związek"></div>
+      </div>
+    </div>
+    <div class="container right">
+      <div class="content">
+        <h2>13 kwietnia 2024</h2>
+        <p>Bardzo długo nam zajęło spotkanie się po raz pierwszy. Stres z tym związany, niechęć naszych rodziców szczególnie moich, ale jednak w końcu się udało!!! Był to moim skromnym duży krok w naszym związku, cieszyliśmy się tym oboje... Pierwsze buziaczki, tulenie nawet wypad do kawiarni, która była wzorowana na Harrym Potterze.</p> 
+        <div id="zdjecia">
+          <img  id="zdjecia" src="photos/zdjecie1.png" style="width:100%;">
+          </div>
+          <div id="zdjecia"> 
+            <img  id="zdjecia" src="photos/soczek.png" style="width:50%;">
+            <img id="zdjecia" src="photos/zdjecie2.png" style="width:50%;">
+        </div>
+      </div>
+    </div>
+    <div class="container left">
+      <div class="content">
+        <h2>7 maja 2024</h2>
+        <p>Drugie nasze spotkanie, byłem wtedy na nocowanie, dokładnie na tym spotkaniu zostałem zacałowany na śmierć (oczywiście w przenośni) i kompletnym przypadkiem ustawiłem to zdjęcie jako moją tapetę na IG i FB. Przypał z malinką... Nic się nie stało uprzedzam.</p>
+        <div id="zdjecia">
+          <img  id="zdjecia" src="photos/makingof.png" style="width:50%;">
+          <img id="zdjecia" src="photos/profilowe.png" style="width:50%;">
+          </div>
+          <div id="zdjecia">
+            <img  id="zdjecia" src="photos/myv2.png" style="width:50%;">
+            <img id="zdjecia" src="photos/malinka.png" style="width:50%;">
+            </div>
+      </div>
+    </div>
+    <div class="container right">
+      <div class="content">
+        <h2>29 maja 2024 </h2>
+        <p>Już trzecie spotkanie. Musiałem czekać do 14 na Nicole i Panią Annę w Zelowie, bo wcześniej nie mogły przyjechać. Pozwiedzałem trochę "świata", nie było tak źle. Wtedy nocowałem 3 dni. "Nicola źle się czuję, chyba wrócę do domu" wtedy zostały wypowiedziane te słynne słowa. Na tym spotkaniu Nicola dostała najlepszy bukiet na całym świecie.</p>
+        <div id="zdjecia">
+          <img  id="zdjecia" src="photos/bukiet.png" style="width:50%;">
+          <img id="zdjecia" src="photos/trening.png" style="width:50%;">
+          </div>
+          <div id="zdjecia">
+            <img  id="zdjecia" src="photos/my.png" style="width:50%;">
+            <img id="zdjecia" src="photos/ksiezniczka.png" style="width:50%;">
+            </div>
+      </div>
+    </div>
+    <div class="container left">
+      <div class="content">
+        <h2>18 czerwca 2024</h2>
+        <p>NICOLA PRZYJECHAŁA DO MNIE! W tym dniu stało się coś niemożliwego, mama Nicoli Anna zgodziła się na to by to właśnie Nicola przyjechała do mnie. Było to spotkanie przed weselem, na które dostałem zaproszenie. Mycie włosów, piknik, buziaczki, tulaski, wszystko co możliwe. Po prostu miłość.</p>
+        <div id="zdjecia">
+          <img  id="zdjecia" src="photos/włoski.png" style="width:50%;"><img id="zdjecia" src="photos/buziaczek.png" style="width:50%;">
+          </div>
+          <div id="zdjecia">
+            <img  id="zdjecia" src="photos/odjazd.png" style="width:50%;"><img id="zdjecia" src="photos/piknik.png" style="width:50%;">
+            </div>
+      </div>
+    </div>
+    <div class="container right">
+      <div class="content">
+        <h2>4 lipca 2024</h2>
+        <p>Za 2 dni wesele w Warszawie, przygotowania do niego trwają. (Psst. Nicola wygląda obłędnie w sukience). 6 lipca to dzień wesela, muzyka średnia, wystrój sali cudowny, jaki i drinki. Na pewno same dobre wspomienia z tego miejsca.</p>
+        <div id="zdjecia">
+          <img  id="zdjecia" src="photos/CUDO.png" style="width:50%;"><img id="zdjecia" src="photos/piesek.png" style="width:50%;">
+          </div>
+          <div id="zdjecia">
+            <img  id="zdjecia" src="photos/PCW.png" style="width:50%;"><img id="zdjecia" src="photos/jezyczek.png"  style="width:50%;">
+            </div>
+      </div>
+    </div>
+  </div>
+  
+</body>
+</html>
