@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Particle Heart Animation</title>
+    <style>
+        body {
+            margin: 0;
+            background-color: black;
+            overflow: hidden;
+        }
+        canvas {
+            display: block;
+        }
+        p {
+            font-size: 50px;
+            text-align: center;
+            overflow: auto;
+            color: white;
+            letter-spacing: 2px;
+            z-index: 1;
+            position: absolute;
+            width: 100%;
+            opacity: 0; /* Ukryte na początku */
+            transition: opacity 1s ease-in-out;
+        }
+
+        #message1 {
+            top: 10%; /* Tekst na górze serca */
+        }
+
+        #message2 {
+            bottom: 5%; /* Tekst na dole serca */
+        }
+
+    </style>
+</head>
+<body>
+    <p id="message1">Kocham cię Skarbie Mój Największy</p>
+    <canvas id="heartCanvas"></canvas>
+    <p id="message2">Jesteś dla mnie wszystkim i nigdy nie pozwolę żebyś mnie opuściła.</p>
+
+    <script>
+        const canvas = document.getElementById("heartCanvas");
+        const ctx = canvas.getContext("2d");
+        const dpi = window.devicePixelRatio || 1;
+
+        // Dopasowanie canvas do pełnego ekranu
+        function resizeCanvas() {
+            canvas.width = window.innerWidth * dpi;
+            canvas.height = window.innerHeight * dpi;
+            canvas.style.width = `${window.innerWidth}px`;
+            canvas.style.height = `${window.innerHeight}px`;
+        }
+        resizeCanvas();
+        window.addEventListener("resize", resizeCanvas);
+
+        const width = canvas.width;
+        const height = canvas.height;
+
+        // Parametry cząsteczek
+        const particles = [];
+        const particleCount = 4000; // Liczba cząsteczek
+        const heartScale = 17; // Skala serca
+
+        // Generowanie pozycji serca
+        function heartShape(t) {
+            const x = 16 * Math.pow(Math.sin(t), 3);
+            const y = -(13 * Math.cos(t) - 5 * Math.cos(2 * t) - 2 * Math.cos(3 * t) - Math.cos(4 * t));
+            return { x, y };
+        }
+
+        // Inicjalizacja cząsteczek
+        for (let i = 0; i < particleCount; i++) {
+            const angle = Math.random() * 2 * Math.PI;
+            const distance = Math.random();
+            particles.push({
+                x: (Math.random() * width), // Startowa pozycja X
+                y: (Math.random() * height), // Startowa pozycja Y
+                size: Math.random() * 2 + 1, // Rozmiar cząsteczki
+                color: `rgba(255, ${Math.random() * 125}, ${Math.random() * 125}, 0.8)`,// Kolory RGB z przezroczystością
+                targetX: width / 2 + heartScale * heartShape(angle).x * distance, // Cel X
+                targetY: height / 2 + heartScale * heartShape(angle).y * distance, // Cel Y
+                speed: Math.random() * 2 + 1 // Prędkość ruchu
+            });
+        }
+
+        // Animacja
+        function animateParticles() {
+            ctx.clearRect(0, 0, width, height);
+
+            particles.forEach(particle => {
+                // Ruch w kierunku celu
+                const dx = particle.targetX - particle.x;
+                const dy = particle.targetY - particle.y;
+                const distance = Math.sqrt(dx * dx + dy * dy);
+                const velocity = Math.min(particle.speed, distance / 100);
+
+                particle.x += (dx / distance) * velocity;
+                particle.y += (dy / distance) * velocity;
+
+                // Rysowanie cząsteczek
+                ctx.beginPath();
+                ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
+                ctx.fillStyle = particle.color;
+                ctx.fill();
+            });
+
+            // Jeśli animacja zakończona, pokaż tekst
+            if (particles.every(particle => Math.abs(particle.x - particle.targetX) < 0.5 && Math.abs(particle.y - particle.targetY) < 0.5)) {
+                document.getElementById('message1').style.opacity = 1; // Wyświetl pierwszy tekst
+                document.getElementById('message2').style.opacity = 1; // Wyświetl drugi tekst
+            } else {
+                requestAnimationFrame(animateParticles);
+            }
+        }
+
+        animateParticles();
+    </script>
+</body>
+</html>
